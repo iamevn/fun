@@ -1,0 +1,44 @@
+Program Evan Tree [
+	declare size real;
+	declare counter real;
+	declare stars real;
+	let size = 10;
+	let counter = 0;
+	let stars = 1;
+	declare n real;
+
+	declare space char;
+	declare star char;
+	declare newline char;
+	let space = ' ';
+	let star = '*';
+	let newline = '\n';
+
+	while counter < size
+	[
+		let n = counter;
+		while n < size
+		[
+			print space;
+			let n = n + 1;
+		]
+		let n = 0;
+		while n < stars
+		[
+			print star;
+			let n = n + 1;
+		]
+		print newline;
+		let stars = stars + 2;
+		let counter = counter + 1;
+	]
+
+	let counter = 0;
+	while counter < size
+	[
+		print space;
+		let counter = counter + 1;
+	]
+	print star;
+	print newline;
+]

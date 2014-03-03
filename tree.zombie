@@ -1,0 +1,65 @@
+TreeSize is a zombie
+summon
+	remember 5
+bind
+
+SpaceSayer is a zombie
+summon
+	remember " "
+bind
+
+StarSayer is a zombie
+summon
+	remember "*"
+bind
+
+NewLineSayer is a zombie
+summon
+	remember "\n"
+bind
+
+LineCounter is a zombie
+summon
+	remember 1
+bind
+
+CharCounter is a zombie
+summon
+	remember 0
+bind
+
+PrintTree is a zombie
+summon
+	task DecorateTree
+		remember moan TreeSize
+		shamble
+			remember CharCounter moan TreeSize turn moan LineCounter
+			shamble
+				taste remembering CharCounter 0 good
+				bad
+					say moan SpaceSayer
+					remember CharCounter moan CharCounter -1
+				spit
+			until remembering CharCounter 0
+
+			remember CharCounter moan LineCounter moan LineCounter -1
+			shamble
+				say moan StarSayer
+				remember CharCounter moan CharCounter -1
+			until remembering CharCounter 0
+			say moan NewLineSayer
+			remember LineCounter moan LineCounter 1
+			remember moan -1
+		until remembering 0 
+
+		remember moan TreeSize -1
+		say moan
+		shamble
+			say moan SpaceSayer
+			remember moan -1
+		until remembering 0
+
+		say moan StarSayer
+		say moan NewLineSayer
+	animate
+animate
