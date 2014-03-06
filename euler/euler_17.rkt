@@ -41,6 +41,21 @@
                 (append (name<1000 (remainder n 1000)) (if (null? (car ls)) ret
                                                          (cons (car ls) ret)))))))))
 
+(define (count-letters ls)
+  (foldl (lambda (sum str)
+           (+ sum (string-length str)))
+         0 ls))
+
+(define (build-ls max)
+  (let loop ([n max])
+    (if (zero? n) '()
+      (cons (number-name n) (loop (sub1 n))))))
+
+(define (take-that-euler max)
+  (foldl + 0 
+         (map count-letters 
+              (build-ls max))))
+
 (define (count-letters number-ls)
   (foldl + 0 (map string-length number-ls)))
 
