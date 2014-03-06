@@ -1,6 +1,10 @@
 (define names (list "" "thousand" "million" "billion" "trillion" "quadrillion" "quintillion" "sextillion" "septillion" "octillion" "nonillion" "decillion" "undecillion" "duodecillion" "tredecillion" "quattuordecillion" "qinquadecillion" "sedecillion" "septendecillion" "octodecillion" "novendecillion" "vigntillion" "unvigintillion" "duovigintillion" "tresvigintillion" "quattuorvigintillion" "quinquavigintillion" "sesvigintillion" "octovigintillion" "novemvigintillion" "trigintillion" "untrigintillion" "duotrigintillion"))
 (define <20 (list "one" "two" "three" "four" "five" "six" "seven" "eight" "nine" "ten" "eleven" "twelve" "thirteen" "fourteen" "fifteen" "sixteen" "seventeen" "eighteen" "nineteen"))
+<<<<<<< HEAD
 (define tens>20 (list "twenty" "thirty" "fourty" "fifty" "sixty" "seventy" "eighty" "nintey"))
+=======
+(define tens>20 (list "twenty" "thirty" "forty" "fifty" "sixty" "seventy" "eighty" "nintey"))
+>>>>>>> e4aa200e5aaf5ebdd9b4edcabe99f10ea5e8765a
 
 (define (to-word<20 n)
   (let loop ((n n) (ls <20))
@@ -14,11 +18,19 @@
 
 (define (name<1000 n) 
   (let loop ((n n) (ret '()))
+<<<<<<< HEAD
     (cond ((= n 0) '(zero))
           ((> (quotient n 100) 0)
            (cons (to-word<20 (quotient n 100))
                  (cons "hundred" 
                        (cond ((= (remainder n 100) 0) 
+=======
+    (cond ((= n 0) '("zero"))
+          ((> (quotient n 100) 0)
+           (cons (to-word<20 (quotient n 100))
+                 (cons "hundred" 
+                       (cond ((zero? (remainder n 100)) 
+>>>>>>> e4aa200e5aaf5ebdd9b4edcabe99f10ea5e8765a
                               '())
                              ((< (remainder n 100) 20)
                               (cons "and" (cons (to-word<20 (remainder n 100)) ret)))
@@ -32,7 +44,11 @@
                                                                    (cons (to-word<20 (remainder n 10)) ret)))))))
 
 (define (number-name n)
+<<<<<<< HEAD
   (if (= n 0) '(zero)
+=======
+  (if (= n 0) '("zero")
+>>>>>>> e4aa200e5aaf5ebdd9b4edcabe99f10ea5e8765a
     (let loop ((n n) (ls names) (ret '()))
       (if (or (not (number? n)) (= n 0)) ret
         (loop (quotient n 1000)
@@ -41,6 +57,7 @@
                 (append (name<1000 (remainder n 1000)) (if (null? (car ls)) ret
                                                          (cons (car ls) ret)))))))))
 
+<<<<<<< HEAD
 (define (count-letters ls)
   (foldl (lambda (sum str)
            (+ sum (string-length str)))
@@ -55,3 +72,13 @@
   (foldl + 0 
          (map count-letters 
               (build-ls max)))
+=======
+(define (count-letters number-ls)
+  (foldl + 0 (map string-length number-ls)))
+
+(define (number-lst max) 
+  (map add1 (build-list max values)))
+
+(define (euler-17 max)
+  (foldl + 0 (map count-letters (map number-name (number-lst max)))))
+>>>>>>> e4aa200e5aaf5ebdd9b4edcabe99f10ea5e8765a
