@@ -1,6 +1,6 @@
 ; #lang racket
 ;;huffman.rkt
-;;Evan Minsk 06-02-2014
+;;06-02-2014
 ;;playing around with huffman encoding
 
 ;a node will have an index value and data which will contain either a pair nodes, or a char
